@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFA Cyber Security Awareness Game</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="./js/data.js"></script>
+</head>
+<body>
+    <header>
+        <h1>DFA Cybersecurity Awareness Jeopardy!</h1>
+    </header>
+    <div id="jeopardy">
+        <div class="container-form" v-if="!email">
+            <form>
+                <label for="email">Company Email:</label>
+                <input type="text" id="email" class="email" v-model="rawEmail">
+                <button type="submit" @click="set_email">Play</button>
+            </form>
+        </div>
+        <div id="game">
+            <column v-for="category in categories" v-bind:key="category.category">
+                <heading v-bind:category="category.category"></heading> 
+                <cell v-for="question in category.questions" v-bind:key="question.points"
+                v-bind:points="question.points"
+                v-bind:question="question.question"
+                v-bind:answers="question.answers"
+                v-bind:correct="question.correct">
+                </cell>
+            </column>
+        </div>
+        <div class="container-score">
+            <h1>Score: {{score}}</h1>
+        </div>
+    </div>  
+    <script src="./js/table.js"></script>
+    <script src="./js/jeopardy.js"></script>
+</body>
+</html>
