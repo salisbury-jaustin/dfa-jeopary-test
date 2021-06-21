@@ -71,7 +71,7 @@ Vue.prototype.$game_data = {
                     answers : {
                         a: "$170,000", 
                         b: "$1.13 million",
-                        c: "8.19 million" 
+                        c: "$8.19 million" 
                     },
                     correct: "c"
                 },
@@ -237,7 +237,7 @@ Vue.prototype.$game_data = {
                     answers : {
                         a: "Perform regular updates to payments software", 
                         b: "Use out-dated anti-virus software",
-                        c: "Hold of on code integrity checks until attacks happen" 
+                        c: "Hold off on code integrity checks until attacks happen" 
                         },
                     correct: "a"
                 },

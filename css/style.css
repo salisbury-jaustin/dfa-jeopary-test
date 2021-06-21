@@ -9,7 +9,32 @@
   --secondary-tractor-red: #DA291C;
   --secondary-subtle-silver: #d9d9d9;
   --transparent-digital-blue: rgba(65, 182, 230, 0.2);
+  --cell-position-top: 0px;
+  --cell-position-left: 0px;
+  --cell-width: 0px;
+  --cell-height: 0px;
 }
+@font-face {
+  font-family:"ff-good-web-pro";
+  src:url("https://use.typekit.net/af/a92a50/00000000000000003b9b0604/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/a92a50/00000000000000003b9b0604/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/a92a50/00000000000000003b9b0604/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+  font-display:auto;
+  font-style:normal;
+  font-weight:700;
+}
+@font-face {
+  font-family:"ff-good-web-pro-narrow";
+  src:url("https://use.typekit.net/af/4cd3b5/00000000000000003b9b064a/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/4cd3b5/00000000000000003b9b064a/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/4cd3b5/00000000000000003b9b064a/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+  font-display:auto;
+  font-style:normal;
+  font-weight:400;
+}
+@font-face {
+  font-family:"ff-good-web-pro-condensed";
+  src:url("https://use.typekit.net/af/186b2a/00000000000000003b9b061a/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/186b2a/00000000000000003b9b061a/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/186b2a/00000000000000003b9b061a/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+  font-display:auto;
+  font-style:normal;
+  font-weight:400;
+  }
 * {
   box-sizing: border-box; }
 
@@ -31,6 +56,7 @@ header {
   align-items: center;
   justify-content: center;
   color: #FFFEF7;
+  font-family: "ff-good-web-pro";
 }
 
 .container-form {
@@ -75,6 +101,7 @@ form {
 .heading {
   text-align: center;
   background-color: var(--secondary-subtle-silver);
+  font-family: "ff-good-web-pro-condensed";
 }
 .heading>h1 {
   padding: 0;
@@ -85,19 +112,58 @@ form {
   height: 100%;
   text-align: center;
   background-color: var(--secondary-subtle-silver);
+  font-family: "ff-good-web-pro-narrow";
 }
 .points>h2 {
   padding: 0;
   margin: 0;
 }
-.question {
+/*top and left were 0*/
+.question{
   position: fixed;
-  top:0;
-  left: 0;
   z-index: 1000;
+  width: var(--cell-width);
+  height: var(--cell-height);
+  top: var(--cell-position-top);
+  left: var(--cell-position-left);
   background-color: var(--secondary-subtle-silver);
   border: solid var(--primary-american-navy);
+  overflow: hidden;
 }
+.question>h3,h4 {
+  font-family: "ff-good-web-pro";
+}
+.expand-enter-from {
+  width: var(--cell-width);
+  height: var(--cell-height);
+  top: var(--cell-position-top);
+  left: var(--cell-position-left);
+}
+.expand-enter-active {
+  transition: all 1s ease;
+}
+.expand-enter-to {
+  top: 0;
+  left: 0; 
+  height: 100vh;
+  width: 100vw;
+}
+.expand-leave-from {
+  top: 0;
+  left: 0; 
+  height: 100vh;
+  width: 100vw;
+}
+.expand-leave-active {
+  transition: all 1s ease;
+}
+.expand-leave-to {
+  width: var(--cell-width);
+  height: var(--cell-height);
+  top: var(--cell-position-top);
+  left: var(--cell-position-left);
+}
+
 .container-button {
   width: 100%;
   text-align: center;
@@ -111,7 +177,10 @@ form {
 .container-score {
   text-align: center;
   color: #FFFEF7;
+  font-family: "ff-good-web-pro"
 }
+
+/******************** MOBILE ********************/
 @media screen and (max-width: 767.9px) {
 header {
   width: 100%;
@@ -133,14 +202,14 @@ form {
   height: 4rem;
 }
 .question {
-  height: 100vh;
-  width: 100vw;
   padding: 2rem 0rem 0rem 1rem;
 }
 .container-button>button {
   height: 2rem;
   width: 6rem;
 }
+
+/******************** Tablet ********************/ 
 }
 @media screen and (min-width: 768px) and (max-width: 991.9px) {
 header {
@@ -164,8 +233,6 @@ form {
   height: 3rem;
 }
 .question {
-  height: 100vh;
-  width: 100vw;
   padding: 2rem 0rem 0rem 3rem;
 }
 .question>h3 {
@@ -178,6 +245,8 @@ form {
   height: 2.5rem;
   width: 8rem;
 }
+
+/******************** Laptop ********************/
 }
 @media screen and (min-width: 992px) and (max-width: 1199.9px) {
   header {
@@ -201,8 +270,6 @@ form {
     height: 4rem;
   }
   .question {
-    height: 100vh;
-    width: 100vw;
     padding: 3rem 0rem 0rem 5rem;
   }
   .question>h3 {
@@ -216,6 +283,8 @@ form {
     width: 10rem;
   }
 }
+
+/******************** Desktop ********************/
 @media screen and (min-width: 1200px) {
   header {
     width: 100%;
@@ -239,12 +308,8 @@ form {
   .points {
     height: 4rem;
   }
+  /* previous values: height: 70vh; width 80vw; top: 4rem; left: 50%; transform:translateX(-50%); */
   .question {
-    height: 70vh;
-    width: 80vw;
-    top: 4rem;
-    left: 50%;
-    transform: translateX(-50%);
     padding: 3rem 0rem 0rem 5rem;
   }
   .question>h3 {

@@ -17,14 +17,14 @@
         <div class="container-form" v-if="!email">
             <form>
                 <label for="email">Company Email:</label>
-                <input type="text" id="email" class="email" v-model="rawEmail">
+                <input type="text" id="email" class="email" v-model="emailInput">
                 <button type="submit" @click="set_email">Play</button>
             </form>
         </div>
         <div id="game">
-            <column v-for="category in categories" v-bind:key="category.category">
+            <column v-for="category in categories" v-bind:key="category.category" :ref="category.category + '-column'" v-on:answercorrect="this.$ref.complete += 1">
                 <heading v-bind:category="category.category"></heading> 
-                <cell v-for="question in category.questions" v-bind:key="question.points"
+                <cell :id="category.category + question.points" v-for="question in category.questions" v-bind:key="question.points" 
                 v-bind:points="question.points"
                 v-bind:question="question.question"
                 v-bind:answers="question.answers"
